@@ -18,7 +18,6 @@ import javax.inject.Inject;
 
 import org.glassfish.jersey.server.mvc.Viewable;
 
-
 @ApplicationScoped
 @Path("authentication")
 public class Authenticator {

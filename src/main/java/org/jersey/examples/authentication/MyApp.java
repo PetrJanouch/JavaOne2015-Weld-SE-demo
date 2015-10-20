@@ -17,7 +17,7 @@ import org.jboss.weld.environment.se.Weld;
 @ApplicationPath("/*")
 public class MyApp extends ResourceConfig {
 
-    public static final URI AppURI = URI.create("http://localhost:8080/app");
+    public static final URI AppURI = URI.create("http://localhost:8080/");
 
     public MyApp() {
         super(Authenticator.class, HelloResource.class, AuthenticationFilter.class, SessionFilter.class);
@@ -32,8 +32,6 @@ public class MyApp extends ResourceConfig {
         weld.initialize();
 
         HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(myUri, new MyApp(), false);
-        HttpHandler httpHandler = new CLStaticHttpHandler(HttpServer.class.getClassLoader(), "/web/");
-        httpServer.getServerConfiguration().addHttpHandler(httpHandler, "/");
         httpServer.start();
         System.in.read();
         httpServer.shutdown();

@@ -10,8 +10,7 @@ import javax.ws.rs.core.UriBuilder;
 import javax.annotation.Priority;
 import javax.inject.Inject;
 
-
-@Priority(50)
+@Priority(200)
 @FormAuthenticated
 public class AuthenticationFilter implements ContainerRequestFilter {
 

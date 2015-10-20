@@ -17,8 +17,7 @@ import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.grizzly.http.server.Request;
 import org.glassfish.grizzly.http.server.Session;
 
-
-@Priority(40)
+@Priority(100)
 public class SessionFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
     @Inject
@@ -35,11 +34,9 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
 
     @Override
     public void filter(final ContainerRequestContext requestContext) throws IOException {
-       User.fillFromSession(user, session);
+        User.fillFromSession(user, session);
         OriginalDestination.fillFromSession(originalDestination, session);
     }
-
-
 
     @Override
     public void filter(final ContainerRequestContext requestContext, final ContainerResponseContext responseContext)
@@ -56,10 +53,9 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
 
     @RequestScoped
     @Produces
-    public  Session getSession() {
+    public Session getSession() {
         Request request = serviceLocator.getService(Request.class);
         return request.getSession();
     }
-
 
 }
